@@ -1,55 +1,95 @@
-Reconciliation & Audit System
-Overview
+🧾 Reconciliation & Audit System
 
-This project is a full-stack web application for data reconciliation and audit tracking. Users can upload CSV files, reconcile data against existing records, and monitor reconciliation status via dashboards. The system is designed with role-based access control to support Admins, Analysts, and Viewers.
+A full-stack MERN web application for data reconciliation and audit tracking.
+The system enables users to upload CSV files, reconcile transactions against existing records, and monitor results through dashboards — all secured with role-based access control.
 
-Features
+📌 Overview
 
-Authentication & Authorization:
+This application is designed to help organizations reconcile transactional data efficiently while maintaining a clear audit trail.
+It supports three roles:
 
-JWT-based login system
+Admin – Full access
+
+Analyst – Upload and reconcile data
+
+Viewer – Read-only access
+
+✨ Features
+🔐 Authentication & Authorization
+
+JWT-based authentication
 
 Role-based access control:
 
 Admin: Full access
 
-Analyst: Can upload and reconcile
+Analyst: Upload & reconcile
 
 Viewer: Read-only
 
-CSV Upload & Reconciliation:
+📂 CSV Upload & Reconciliation
 
 Upload large CSV files for reconciliation
 
-Detect matches, partial matches, and duplicates
+Detect:
 
-Display first 20 rows before confirming upload
+Matches
 
-Handle partial failures gracefully
+Partial matches
 
-Dashboard & Visualizations:
+Duplicates
 
-Summary cards for total, matched, unmatched, partial match, and duplicate counts
+Unmatched records
 
-Responsive bar charts showing reconciliation results
+Preview first 20 rows before confirming upload
+
+Graceful handling of partial failures
+
+📊 Dashboard & Visualizations
+
+Summary cards for:
+
+Total records
+
+Matched
+
+Unmatched
+
+Partial matches
+
+Duplicates
+
+Responsive bar charts using Recharts
 
 Status-based filtering
 
-Audit Trail:
+🧾 Audit Trail
 
-Track edits to reconciliation records
+Track edits made to reconciliation records
 
-Record who edited, when, and what changed
+Capture:
 
-Role Enforcement:
+Who made the change
 
-Frontend and backend checks to prevent unauthorized access
+What was changed
 
-Test Data & Sample Records
+When it was changed
 
-For testing and validation purposes, the database is pre-populated with 30 sample reconciliation records. These records are used to verify matching logic, partial matches, duplicate detection, dashboard statistics, and audit trail behavior.
+🛡 Role Enforcement
 
-A sample CSV file named transactions.csv is attached and can be used to:
+Frontend and backend authorization checks
+
+Prevents unauthorized access or operations
+
+🧪 Test Data & Sample Records
+
+To simplify testing and evaluation:
+
+The database is pre-populated with 30 sample reconciliation records
+
+A sample CSV file named transactions.csv is included
+
+These are used to:
 
 Test CSV upload functionality
 
@@ -57,29 +97,31 @@ Preview the first 20 rows before submission
 
 Validate reconciliation outcomes (matched, unmatched, partial, duplicate)
 
-Verify dashboard counts and visualizations
+Verify dashboard statistics and visualizations
 
-This allows evaluators and developers to quickly test the system end-to-end without manually creating initial data.
+Test audit trail behavior
 
-Achievements
+This allows evaluators to test the system end-to-end immediately, without manual setup.
 
-Implemented JWT-based authentication with role-based access control (Admin, Analyst, Viewer) for secure operations.
+🏆 Achievements
 
-Developed dynamic dashboards using React and Recharts to visualize matched, unmatched, partial, and duplicate records.
+Implemented JWT authentication with role-based access control
 
-Designed summary cards and bar charts to clearly display reconciliation statistics.
+Built dynamic dashboards using React + Recharts
 
-Enabled CSV file uploads with support for large datasets while keeping the frontend responsive.
+Designed clear summary cards and reconciliation charts
 
-Built audit trails to track edits to reconciliation records, including who edited, when, and what changed.
+Enabled large CSV uploads while keeping the UI responsive
 
-Ensured data reconciliation accuracy with support for partial matches and duplicate detection.
+Implemented detailed audit trails for record edits
 
-Enforced frontend and backend validation to maintain security and proper role enforcement.
+Ensured reconciliation accuracy with partial match & duplicate detection
 
-Created modular, maintainable code structure for both frontend and backend.
+Enforced security via frontend and backend validation
 
-Architecture
+Maintained a modular and scalable project structure
+
+🧱 Architecture
 
 Frontend: React.js, Material UI, Recharts
 
@@ -89,107 +131,98 @@ Database: MongoDB
 
 Authentication: JWT
 
-File Handling: Multer for CSV uploads
+File Handling: Multer (CSV uploads)
 
-Charts: Recharts (bar chart for reconciliation data)
+Charts: Recharts (Bar charts)
 
-Flow:
+🔄 Application Flow
 
 User logs in → JWT token issued
 
-User uploads CSV → processed asynchronously
+CSV file uploaded → processed asynchronously
 
 Reconciliation results stored in MongoDB
 
-Dashboard summarizes totals and statuses
+Dashboard displays summary and charts
 
-Edits tracked via audit log
+Any edits are logged in the audit trail
 
-Non-Functional Requirements
+⚙ Non-Functional Requirements
 
-Handles large CSV files efficiently
+Efficient handling of large CSV files
 
-Frontend remains responsive during uploads
+Responsive UI during uploads
 
-Partial failures do not break the process
+Partial failures do not break processing
 
-Provides clear and actionable error messages
+Clear, actionable error messages
 
-Project Structure
+🗂 Project Structure
 
-The project follows a clear separation of concerns between frontend and backend:
-
-Backend: Located in the backend/ directory
+backend/
 Contains Express server, API routes, authentication, reconciliation logic, audit logging, and database models.
 
-Frontend: Located in the src/ directory
+src/
 Contains React components, dashboards, charts, role-based UI logic, and API integrations.
 
-This structure keeps the codebase modular, maintainable, and easy to scale.
+This separation keeps the codebase clean, maintainable, and scalable.
 
-API Documentation
-
-Authentication:
+📡 API Documentation
+Authentication
 
 POST /api/login → Returns JWT token and user info
 
 POST /api/signup → Create user account
 
-Reconciliation:
+Reconciliation
 
 POST /api/upload → Upload CSV and reconcile data
 
 PUT /api/reconciliation/:id → Edit reconciliation record (Admin/Analyst)
 
-Dashboard & Reports:
+Dashboard & Reports
 
 GET /api/dashboard → Fetch summary statistics
 
 GET /api/reports/:uploadJobId → Fetch reconciliation records by upload
 
-Audit Logs:
+Audit Logs
 
 GET /api/audits → Retrieve all edits with user and timestamp
 
-Setup Instructions
-
-Install backend dependencies:
-
+🚀 Setup Instructions
+Backend
 cd backend
 npm install
-
-Install frontend dependencies:
-
-cd ../frontend
-npm install
-
-Run backend:
-
-cd ../backend
 node app.cjs
 
-
-Run frontend:
-
-cd ../frontend
+Frontend
+cd frontend
+npm install
 npm start
 
-Sample Input Files
+📄 Sample Input Files
 
-CSV files with columns: TransactionID, Amount, ReferenceNumber, Date
+CSV format:
 
-Supports partial matches and duplicates
+TransactionID, Amount, ReferenceNumber, Date
 
-Assumptions
+Supports:
+
+Partial matches
+
+Duplicate detection
+
+🧠 Assumptions
 
 CSV files are well-formatted with required headers
 
-Users are responsible for correct role assignment
+Users are assigned correct roles
 
-Audit logs only track edits, not initial upload
+Audit logs track edits only (not initial uploads)
 
-Trade-offs & Limitations
+⚖ Trade-offs & Limitations
 
-Backend processes CSV sequentially; could be parallelized for very large datasets
+CSV processing is sequential; parallel processing could improve performance for very large files
 
-Frontend relies on browser memory for CSV preview (first 20 rows only)
+Frontend uses browser memory for CSV preview (first 20 rows only)
